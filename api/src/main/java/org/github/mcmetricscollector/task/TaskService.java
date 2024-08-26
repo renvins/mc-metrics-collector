@@ -1,8 +1,16 @@
 package org.github.mcmetricscollector.task;
 
-public interface TaskService {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.github.mcmetricscollector.MetricsService;
 
-    void runMetricsTask(Runnable runnable, long delay); /* Method to start tracking metrics */
-    void runAsync(Runnable runnable); /* Run an async task */
+@Getter
+@RequiredArgsConstructor
+public abstract class TaskService {
+
+    private final MetricsService metricsService;
+
+    public abstract void runMetricsTask(long seconds); /* Method to start tracking metrics */
+    public abstract void runAsync(Runnable runnable); /* Run an async task */
 
 }
