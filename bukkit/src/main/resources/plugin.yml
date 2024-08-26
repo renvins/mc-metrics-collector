@@ -1,0 +1,6 @@
+name: MCMetricsCollector
+description: Tracks MC server's metrics and displays them by graphs
+authors: [renvins, david]
+version: 1.0
+main: org.github.mcmetricscollector.MetricsCollectorPlugin
+api-version: 1.18

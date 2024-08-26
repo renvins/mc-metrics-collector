@@ -2,5 +2,5 @@ rootProject.name = "mc-metrics-collector"
 
 include("api")
 include("common")
-include("spigot")
-include("injestion-app")
+include("ingestion-app")
+include("bukkit")
