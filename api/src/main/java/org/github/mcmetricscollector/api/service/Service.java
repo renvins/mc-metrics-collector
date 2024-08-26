@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector;
+package org.github.mcmetricscollector.api.service;
 
 public interface Service {
 

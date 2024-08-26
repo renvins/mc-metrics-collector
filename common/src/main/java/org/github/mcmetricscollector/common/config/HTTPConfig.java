@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector.config;
+package org.github.mcmetricscollector.common.config;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

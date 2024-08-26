@@ -1,7 +1,9 @@
 package org.github.mcmetricscollector;
 
-import org.github.mcmetricscollector.data.TPSRetrieverBukkit;
-import org.github.mcmetricscollector.task.TaskService;
+import org.github.mcmetricscollector.api.service.Service;
+import org.github.mcmetricscollector.common.MetricsServiceImpl;
+import org.github.mcmetricscollector.common.MetricsTask;
+import org.github.mcmetricscollector.service.BukkitTPSRetriever;
 import org.github.mcmetricscollector.task.TaskServiceBukkit;
 
 import java.util.logging.Logger;
@@ -11,14 +13,14 @@ public class MetricsCollectorLoader implements Service {
     private final MetricsCollectorPlugin plugin;
     private static Logger LOGGER; /* Will not be null in any case (init onEnable) */
 
-    private final MetricsService metricsService;
-    private final TaskService taskService;
+    private final MetricsServiceImpl metricsService;
+    private final MetricsTask taskService;
 
     public MetricsCollectorLoader(MetricsCollectorPlugin plugin) {
         this.plugin = plugin;
         LOGGER = plugin.getLogger();
 
-        this.metricsService = new MetricsService(new TPSRetrieverBukkit());
+        this.metricsService = new MetricsServiceImpl(new BukkitTPSRetriever());
         this.taskService = new TaskServiceBukkit(plugin, metricsService);
     }
 
@@ -27,7 +29,7 @@ public class MetricsCollectorLoader implements Service {
         LOGGER.info("Loading metrics collector...");
         plugin.saveDefaultConfig();
 
-        taskService.runMetricsTask(plugin.getConfig().getLong("metricsFrequency"));
+        taskService.runTask(plugin.getConfig().getLong("metricsFrequency"));
     }
 
     @Override
