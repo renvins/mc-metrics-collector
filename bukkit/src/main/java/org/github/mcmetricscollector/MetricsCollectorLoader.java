@@ -13,14 +13,13 @@ public class MetricsCollectorLoader implements Service {
     private final MetricsCollectorPlugin plugin;
     private static Logger LOGGER; /* Will not be null in any case (init onEnable) */
 
-    private final MetricsServiceImpl metricsService;
     private final MetricsTask taskService;
 
     public MetricsCollectorLoader(MetricsCollectorPlugin plugin) {
         this.plugin = plugin;
         LOGGER = plugin.getLogger();
 
-        this.metricsService = new MetricsServiceImpl(new BukkitTPSRetriever());
+        MetricsServiceImpl metricsService = new MetricsServiceImpl(new BukkitTPSRetriever());
         this.taskService = new TaskServiceBukkit(plugin, metricsService);
     }
 

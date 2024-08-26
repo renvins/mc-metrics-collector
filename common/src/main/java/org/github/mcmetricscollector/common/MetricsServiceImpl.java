@@ -1,9 +1,7 @@
 package org.github.mcmetricscollector.common;
 
 import lombok.RequiredArgsConstructor;
-import org.github.mcmetricscollector.api.dto.MetricsDTO;
 import org.github.mcmetricscollector.api.service.MetricsService;
-import org.github.mcmetricscollector.api.service.Service;
 import org.github.mcmetricscollector.api.service.TPSRetriever;
 
 /* Common service to send metrics to Server app */
@@ -18,7 +16,7 @@ public class MetricsServiceImpl implements MetricsService {
     }
 
     @Override
-    public void sendMetrics(MetricsDTO metrics) {
-
+    public void sendMetrics() {
+        /* Create MetricsDTO, JSON it and send through HTTP request */
     }
 }

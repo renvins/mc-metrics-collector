@@ -13,7 +13,6 @@ public class MetricsDTO {
     private double cpuUsage;
     private double memoryUsage;
 
-    /* Will change data type */
     private double[] tps;
 
 }
