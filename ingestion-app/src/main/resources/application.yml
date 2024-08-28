@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: mc-metrics-ingestion-app

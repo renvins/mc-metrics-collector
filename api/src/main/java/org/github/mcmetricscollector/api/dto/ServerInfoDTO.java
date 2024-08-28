@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ServerInfoDTO {
 
-    private String serverInfo;
+    private String serverName;
     private String serverType;
 }
