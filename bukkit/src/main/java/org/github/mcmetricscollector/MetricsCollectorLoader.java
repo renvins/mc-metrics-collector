@@ -19,7 +19,8 @@ public class MetricsCollectorLoader implements Service {
         this.plugin = plugin;
         LOGGER = plugin.getLogger();
 
-        MetricsServiceImpl metricsService = new MetricsServiceImpl(new BukkitTPSRetriever());
+        /* TODO: Retrieve serverName and serverType from config */
+        MetricsServiceImpl metricsService = new MetricsServiceImpl();
         this.taskService = new TaskServiceBukkit(plugin, metricsService);
     }
 

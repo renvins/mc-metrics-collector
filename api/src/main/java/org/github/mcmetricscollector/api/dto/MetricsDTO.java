@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class MetricsDTO {
 
-    private String serverName;
-    private String serverType;
+    private ServerInfoDTO serverInfo;
 
     private int onlinePlayers;
 
@@ -15,4 +14,11 @@ public class MetricsDTO {
 
     private double[] tps;
 
+    public MetricsDTO(ServerInfoDTO serverInfo, int onlinePlayers, double cpuUsage, double memoryUsage, double[] tps) {
+        this.serverInfo = serverInfo;
+        this.onlinePlayers = onlinePlayers;
+        this.cpuUsage = cpuUsage;
+        this.memoryUsage = memoryUsage;
+        this.tps = tps;
+    }
 }
