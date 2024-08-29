@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: mc-metrics-ingestion-app
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    url: /api/swagger.yml
+
+management:
+  influx:
+    metrics:
+      export:
+        enabled: false
+
+influx:
+  username: admin
+  password: He2X#GJt
+  org: metrics_org
+  bucket: metrics
+  url: http://localhost:8086
+  log-level: basic

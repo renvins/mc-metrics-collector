@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: MC Metrics Ingestion App
+  version: "1.0"
+paths:
+  /v1/metrics:
+    post:
+      tags:
+        - metrics
+      summary: Sends metrics to ingestion
+      operationId: receiveMetrics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MetricsDTO"
+      responses:
+        200:
+          description: "Metrics were successfully persisted"
+        400:
+          description: "Client did not send the metrics correctly"
+        401:
+          description: "Client did not provide valid credentials"
+        500:
+          description: "A generic backend error occurred"
+components:
+  schemas:
+    MetricsDTO:
+      type: object
+      required:
+        - timestamp
+        - serverInfo
+        - onlinePlayers
+        - cpuUsage
+        - memoryUsage
+        - tps
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        serverInfo:
+          $ref: '#/components/schemas/ServerInfoDTO'
+        onlinePlayers:
+          type: integer
+        cpuUsage:
+          type: number
+        memoryUsage:
+          type: number
+        tps:
+          type: array
+          items:
+            type: number
+    ServerInfoDTO:
+      type: object
+      required:
+        - serverName
+        - serverType
+      properties:
+        serverName:
+          type: string
+          example: "vanilla"
+        serverType:
+          type: string
+          example: "survival"
