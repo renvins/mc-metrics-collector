@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector.rest;
+package org.github.mcmetricscollector.security;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
