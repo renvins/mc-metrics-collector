@@ -9,9 +9,12 @@ repositories {
 }
 
 dependencies {
+    val jacksonNullableVer = "0.2.6"
+    val springdocVer = "2.5.0"
+
     api(project(":api"))
-// https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable
-    implementation("org.openapitools:jackson-databind-nullable:0.2.6")
+    implementation("org.openapitools:jackson-databind-nullable:$jacksonNullableVer")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVer")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -31,7 +34,7 @@ sourceSets {
 }
 
 tasks.openApiGenerate {
-    inputSpec.set("$rootDir/ingestion-app/src/main/resources/api/swagger.yml")
+    inputSpec.set("$rootDir/ingestion-app/src/main/resources/static/api/swagger.yml")
     generatorName.set("spring")
     library.set("spring-boot")
     apiPackage.set("org.github.mcmetricscollector.gen.api")
