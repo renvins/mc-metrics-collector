@@ -11,12 +11,17 @@ repositories {
 dependencies {
     val jacksonNullableVer = "0.2.6"
     val springdocVer = "2.5.0"
+    val influxdbVer = "7.2.0"
+    val influxDbMicrometerRegistryVer = "1.12.2"
 
     api(project(":api"))
     implementation("org.openapitools:jackson-databind-nullable:$jacksonNullableVer")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVer")
+    implementation ("com.influxdb:influxdb-spring:$influxdbVer")
+    implementation ("io.micrometer:micrometer-registry-influx:$influxDbMicrometerRegistryVer")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

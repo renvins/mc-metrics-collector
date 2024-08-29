@@ -10,6 +10,7 @@ paths:
       summary: Sends metrics to ingestion
       operationId: receiveMetrics
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -29,6 +30,11 @@ components:
       type: object
       required:
         - timestamp
+        - serverInfo
+        - onlinePlayers
+        - cpuUsage
+        - memoryUsage
+        - tps
       properties:
         timestamp:
           type: integer
@@ -47,6 +53,9 @@ components:
             type: number
     ServerInfoDTO:
       type: object
+      required:
+        - serverName
+        - serverType
       properties:
         serverName:
           type: string
