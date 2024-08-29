@@ -1,27 +1,25 @@
 package org.github.mcmetricscollector;
 
+import org.github.mcmetricscollector.api.dto.ServerInfoDTO;
 import org.github.mcmetricscollector.api.service.Service;
+import org.github.mcmetricscollector.api.service.TPSRetriever;
 import org.github.mcmetricscollector.common.MetricsServiceImpl;
 import org.github.mcmetricscollector.common.MetricsTask;
-import org.github.mcmetricscollector.service.BukkitTPSRetriever;
-import org.github.mcmetricscollector.task.TaskServiceBukkit;
+import org.github.mcmetricscollector.service.TPSRetrieverBukkit;
+import org.github.mcmetricscollector.service.TaskServiceBukkit;
 
 import java.util.logging.Logger;
 
 public class MetricsCollectorLoader implements Service {
 
     private final MetricsCollectorPlugin plugin;
-    private static Logger LOGGER; /* Will not be null in any case (init onEnable) */
+    public static Logger LOGGER; /* Will not be null in any case (init onEnable) */
 
-    private final MetricsTask taskService;
+    private MetricsTask taskService;
 
     public MetricsCollectorLoader(MetricsCollectorPlugin plugin) {
         this.plugin = plugin;
         LOGGER = plugin.getLogger();
-
-        /* TODO: Retrieve serverName and serverType from config */
-        MetricsServiceImpl metricsService = new MetricsServiceImpl();
-        this.taskService = new TaskServiceBukkit(plugin, metricsService);
     }
 
     @Override
@@ -29,11 +27,24 @@ public class MetricsCollectorLoader implements Service {
         LOGGER.info("Loading metrics collector...");
         plugin.saveDefaultConfig();
 
+        taskService = initTaskService();
         taskService.runTask(plugin.getConfig().getLong("metricsFrequency"));
     }
 
     @Override
     public void unload() {
         LOGGER.info("Unloading metrics collector...");
+    }
+
+    private TaskServiceBukkit initTaskService() {
+        TPSRetriever tpsRetriever = new TPSRetrieverBukkit();
+        ServerInfoDTO serverInfoDTO = new ServerInfoDTO(
+                plugin.getConfig().getString("serverName"),
+                plugin.getConfig().getString("serverType"));
+
+        long timeout = plugin.getConfig().getLong("timeout");
+
+        MetricsServiceImpl metricsService = new MetricsServiceImpl(serverInfoDTO, tpsRetriever, timeout);
+        return new TaskServiceBukkit(plugin, metricsService);
     }
 }

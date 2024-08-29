@@ -1,9 +1,12 @@
-package org.github.mcmetricscollector.task;
+package org.github.mcmetricscollector.service;
 
 import org.bukkit.Bukkit;
+import org.github.mcmetricscollector.MetricsCollectorLoader;
 import org.github.mcmetricscollector.MetricsCollectorPlugin;
 import org.github.mcmetricscollector.common.MetricsServiceImpl;
 import org.github.mcmetricscollector.common.MetricsTask;
+
+import java.io.IOException;
 
 public class TaskServiceBukkit extends MetricsTask {
 
@@ -17,7 +20,14 @@ public class TaskServiceBukkit extends MetricsTask {
     @Override
     public void runTask(long seconds) {
         plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin,
-                () -> getMetricsService().sendMetrics(Bukkit.getOnlinePlayers().size()), 0L, 20 * seconds);
+                () -> {
+                    try {
+                        getMetricsService().sendMetrics(Bukkit.getOnlinePlayers().size());
+                        MetricsCollectorLoader.LOGGER.info("Metrics sent :)");
+                    } catch (IOException | InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, 0L, 20 * seconds);
     }
 
     @Override

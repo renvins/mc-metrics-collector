@@ -1,3 +1,4 @@
 serverName: "bedwars-1"
 serverType: "spigot"
 metricsFrequency: 2 # in seconds
+timeout: 200

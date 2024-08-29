@@ -4,7 +4,7 @@ import net.minecraft.server.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.github.mcmetricscollector.api.service.TPSRetriever;
 
-public class BukkitTPSRetriever implements TPSRetriever {
+public class TPSRetrieverBukkit implements TPSRetriever {
 
     @Override
     public double[] retrieveTPS() {

@@ -14,6 +14,8 @@ public class MetricsDTO {
 
     private double[] tps;
 
+    public MetricsDTO() {}
+
     public MetricsDTO(ServerInfoDTO serverInfo, int onlinePlayers, double cpuUsage, double memoryUsage, double[] tps) {
         this.serverInfo = serverInfo;
         this.onlinePlayers = onlinePlayers;

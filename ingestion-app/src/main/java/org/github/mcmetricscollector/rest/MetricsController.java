@@ -14,7 +14,7 @@ public class MetricsController {
 
     /* TODO: Filter check for metrics */
 
-    @GetMapping("/metrics")
+    @GetMapping("/v1/metrics")
     public List<MetricsDTO> getMetrics() {
 
         /* TODO: InfluxDB implementation */
@@ -22,7 +22,7 @@ public class MetricsController {
         return null;
     }
 
-    @PostMapping("/metrics")
+    @PostMapping("/v1/metrics")
     public ResponseEntity<MetricsDTO> sendMetrics(@RequestBody MetricsDTO metricsDTO) {
 
         /* TODO: InfluxDB implementation */
