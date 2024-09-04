@@ -1,6 +1,16 @@
 spring:
   application:
     name: mc-metrics-ingestion-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=mmc_db
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: admin
+  jpa:
+    open-in-view: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
 springdoc:
   api-docs:
     enabled: false

@@ -24,6 +24,44 @@ paths:
           description: "Client did not provide valid credentials"
         500:
           description: "A generic backend error occurred"
+  /v1/manage/register:
+    post:
+      tags:
+        - management
+      summary: Registers a new user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserDTO"
+      responses:
+        200:
+          description: "Server was successfully registered"
+        400:
+          description: "Client did not send the server info correctly"
+        500:
+          description: "A generic backend error occurred"
+  /v1/manage/enableDisable:
+    post:
+      tags:
+        - management
+      summary: Enables or disables a user
+      operationId: enableDisableUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableDisableUserDTO"
+      responses:
+          200:
+              description: "User was successfully enabled/disabled"
+          400:
+              description: "Client did not send the user info correctly"
+          500:
+              description: "A generic backend error occurred"
 components:
   schemas:
     MetricsDTO:
@@ -63,3 +101,20 @@ components:
         serverType:
           type: string
           example: "survival"
+    RegisterUserDTO:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    EnableDisableUserDTO:
+      type: object
+      required:
+          - username
+      properties:
+          username:
+            type: string
