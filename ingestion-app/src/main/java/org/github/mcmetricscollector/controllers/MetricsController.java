@@ -1,7 +1,7 @@
 package org.github.mcmetricscollector.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.github.mcmetricscollector.gen.api.MetricsApi;
+import org.github.mcmetricscollector.gen.api.MetricsAPI;
 import org.github.mcmetricscollector.gen.model.MetricsDTO;
 import org.github.mcmetricscollector.services.MetricsService;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class MetricsController implements MetricsApi {
+public class MetricsController implements MetricsAPI {
 
     private final MetricsService metricsService;
 

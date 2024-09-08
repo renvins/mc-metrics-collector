@@ -67,7 +67,7 @@ tasks.openApiGenerate {
     library.set("spring-boot")
     apiPackage.set("org.github.mcmetricscollector.gen.api")
     modelPackage.set("org.github.mcmetricscollector.gen.model")
-    apiNameSuffix.set("Api")
+    apiNameSuffix.set("API")
     cleanupOutput.set(true)
     additionalProperties.set(
         mapOf(
