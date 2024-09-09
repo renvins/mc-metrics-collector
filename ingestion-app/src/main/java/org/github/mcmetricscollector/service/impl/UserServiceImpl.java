@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector.services.impl;
+package org.github.mcmetricscollector.service.impl;
 
 import com.google.common.hash.Hashing;
 import org.github.mcmetricscollector.database.sql.entities.UserEntity;
@@ -7,7 +7,7 @@ import org.github.mcmetricscollector.exceptions.ClientException;
 import org.github.mcmetricscollector.exceptions.UserAlreadyExistsException;
 import org.github.mcmetricscollector.exceptions.UserNotEnabledException;
 import org.github.mcmetricscollector.gen.model.RegisterUserDTO;
-import org.github.mcmetricscollector.services.UserService;
+import org.github.mcmetricscollector.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;

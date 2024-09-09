@@ -3,7 +3,7 @@ package org.github.mcmetricscollector.service;
 import org.bukkit.Bukkit;
 import org.github.mcmetricscollector.MetricsCollectorLoader;
 import org.github.mcmetricscollector.MetricsCollectorPlugin;
-import org.github.mcmetricscollector.common.MetricsServiceImpl;
+import org.github.mcmetricscollector.common.service.impl.MetricsServiceImpl;
 import org.github.mcmetricscollector.common.MetricsTask;
 
 import java.io.IOException;

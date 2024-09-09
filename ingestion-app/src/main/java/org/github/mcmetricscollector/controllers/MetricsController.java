@@ -3,7 +3,7 @@ package org.github.mcmetricscollector.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.github.mcmetricscollector.gen.api.MetricsAPI;
 import org.github.mcmetricscollector.gen.model.MetricsDTO;
-import org.github.mcmetricscollector.services.MetricsService;
+import org.github.mcmetricscollector.service.MetricsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

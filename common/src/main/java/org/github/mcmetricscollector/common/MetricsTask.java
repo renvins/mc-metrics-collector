@@ -2,6 +2,7 @@ package org.github.mcmetricscollector.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.github.mcmetricscollector.common.service.impl.MetricsServiceImpl;
 
 @Getter
 @RequiredArgsConstructor

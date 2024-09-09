@@ -1,7 +1,7 @@
 package org.github.mcmetricscollector.config;
 
 import org.github.mcmetricscollector.security.MetricsBasicAuthFilter;
-import org.github.mcmetricscollector.services.UserService;
+import org.github.mcmetricscollector.service.UserService;
 import org.springdoc.core.configuration.SpringDocConfiguration;
 import org.springdoc.core.configuration.SpringDocUIConfiguration;
 import org.springdoc.core.properties.SpringDocConfigProperties;

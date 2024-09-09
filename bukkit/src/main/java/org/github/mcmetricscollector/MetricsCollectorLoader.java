@@ -3,7 +3,7 @@ package org.github.mcmetricscollector;
 import org.github.mcmetricscollector.api.dto.ServerInfoDTO;
 import org.github.mcmetricscollector.api.service.Service;
 import org.github.mcmetricscollector.api.service.TPSRetriever;
-import org.github.mcmetricscollector.common.MetricsServiceImpl;
+import org.github.mcmetricscollector.common.service.impl.MetricsServiceImpl;
 import org.github.mcmetricscollector.common.MetricsTask;
 import org.github.mcmetricscollector.service.TPSRetrieverBukkit;
 import org.github.mcmetricscollector.service.TaskServiceBukkit;

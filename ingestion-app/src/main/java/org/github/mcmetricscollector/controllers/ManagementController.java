@@ -3,7 +3,7 @@ package org.github.mcmetricscollector.controllers;
 import org.github.mcmetricscollector.gen.api.ManagementAPI;
 import org.github.mcmetricscollector.gen.model.EnableDisableUserDTO;
 import org.github.mcmetricscollector.gen.model.RegisterUserDTO;
-import org.github.mcmetricscollector.services.UserService;
+import org.github.mcmetricscollector.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

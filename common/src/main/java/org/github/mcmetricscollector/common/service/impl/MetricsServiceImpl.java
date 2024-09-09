@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector.common;
+package org.github.mcmetricscollector.common.service.impl;
 
 import com.google.gson.Gson;
 import com.sun.management.OperatingSystemMXBean;
@@ -18,7 +18,6 @@ import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.Base64;
 
-/* Common service to send metrics to ingestion app */
 public class MetricsServiceImpl implements MetricsService {
 
     private final ServerInfoDTO serverInfo;
