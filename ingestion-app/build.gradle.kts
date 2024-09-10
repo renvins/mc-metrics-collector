@@ -17,6 +17,7 @@ dependencies {
     val guavaVer = "33.3.0-jre"
 
     api(project(":api"))
+    api(project(":common"))
 
     implementation("org.openapitools:jackson-databind-nullable:$jacksonNullableVer")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVer")

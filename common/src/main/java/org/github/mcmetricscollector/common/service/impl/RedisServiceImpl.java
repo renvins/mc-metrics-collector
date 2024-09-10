@@ -39,13 +39,13 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void subscribe(JedisPubSub handler) {
-        pool.subscribe(handler, config.getChannel());
+        pool.subscribe(handler, "metrics-alerts");
     }
 
     @Override
     public void publish(String message) {
         try {
-            pool.publish(config.getChannel(), message);
+            pool.publish("metrics-alerts", message);
         } catch (JedisException e) {
             log.error("Can not publish redis message!", e);
         }

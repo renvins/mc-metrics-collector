@@ -1,4 +1,4 @@
-package org.github.mcmetricscollector.service;
+package org.github.mcmetricscollector.bukkit.service;
 
 import net.minecraft.server.MinecraftServer;
 import org.bukkit.Bukkit;

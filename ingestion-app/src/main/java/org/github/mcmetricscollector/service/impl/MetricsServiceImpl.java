@@ -22,6 +22,7 @@ public class MetricsServiceImpl implements MetricsService {
     public void saveMetrics(MetricsDTO metricsDTO) {
         var metricsPoint = MappingUtils.mapToMetricsPoint(metricsDTO);
         log.info("Saving metrics: {}", metricsPoint);
+
         influxDBClient.getWriteApiBlocking().writeMeasurement(WritePrecision.S, metricsPoint);
         log.info("Metrics saved successfully!");
     }

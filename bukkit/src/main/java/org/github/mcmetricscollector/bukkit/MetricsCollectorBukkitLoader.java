@@ -1,23 +1,23 @@
-package org.github.mcmetricscollector;
+package org.github.mcmetricscollector.bukkit;
 
 import org.github.mcmetricscollector.api.dto.ServerInfoDTO;
 import org.github.mcmetricscollector.api.service.Service;
 import org.github.mcmetricscollector.api.service.TPSRetriever;
 import org.github.mcmetricscollector.common.service.impl.MetricsServiceImpl;
 import org.github.mcmetricscollector.common.MetricsTask;
-import org.github.mcmetricscollector.service.TPSRetrieverBukkit;
-import org.github.mcmetricscollector.service.TaskServiceBukkit;
+import org.github.mcmetricscollector.bukkit.service.TPSRetrieverBukkit;
+import org.github.mcmetricscollector.bukkit.service.TaskServiceBukkit;
 
 import java.util.logging.Logger;
 
-public class MetricsCollectorLoader implements Service {
+public class MetricsCollectorBukkitLoader implements Service {
 
-    private final MetricsCollectorPlugin plugin;
+    private final MetricsCollectorBukkitPlugin plugin;
     public static Logger LOGGER; /* Will not be null in any case (init onEnable) */
 
     private MetricsTask taskService;
 
-    public MetricsCollectorLoader(MetricsCollectorPlugin plugin) {
+    public MetricsCollectorBukkitLoader(MetricsCollectorBukkitPlugin plugin) {
         this.plugin = plugin;
         LOGGER = plugin.getLogger();
     }

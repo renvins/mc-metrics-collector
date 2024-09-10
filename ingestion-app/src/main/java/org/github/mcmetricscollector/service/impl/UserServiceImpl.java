@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setUsername(registerUserDTO.getUsername());
         userEntity.setPassword(Hashing.sha256().hashString(registerUserDTO.getPassword(), StandardCharsets.UTF_8).toString());
         userEntity.setEnabled(false);
+
         userRepository.save(userEntity);
     }
 
@@ -53,8 +54,8 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new ClientException("User doesn't exist");
         }
-
         var enabled = Boolean.TRUE.equals(user.getEnabled());
+
         user.setEnabled(enabled);
         userRepository.save(user);
     }

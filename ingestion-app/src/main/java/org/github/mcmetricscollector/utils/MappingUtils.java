@@ -13,13 +13,18 @@ public final class MappingUtils {
 
     public static MetricsPoint mapToMetricsPoint(MetricsDTO metricsDTO) {
         MetricsPoint metricsPoint = new MetricsPoint();
+
         Instant timestamp = Instant.ofEpochMilli(metricsDTO.getTimestamp());
         metricsPoint.setTimestamp(timestamp);
+
         metricsPoint.setServerName(metricsDTO.getServerInfo().getServerName());
         metricsPoint.setServerType(metricsDTO.getServerInfo().getServerType());
+
         metricsPoint.setOnlinePlayers(metricsDTO.getOnlinePlayers());
+
         metricsPoint.setCpuUsage(metricsDTO.getCpuUsage().doubleValue());
         metricsPoint.setMemoryUsage(metricsDTO.getMemoryUsage().doubleValue());
+
         metricsPoint.setTps1(metricsDTO.getTps().get(0).doubleValue());
         metricsPoint.setTps5(metricsDTO.getTps().get(1).doubleValue());
         metricsPoint.setTps15(metricsDTO.getTps().get(2).doubleValue());

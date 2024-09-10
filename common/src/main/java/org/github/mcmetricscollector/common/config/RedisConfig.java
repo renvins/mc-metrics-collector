@@ -10,6 +10,4 @@ public class RedisConfig {
 
     private final String username;
     private final String password;
-
-    private final String channel;
 }
