@@ -4,7 +4,9 @@ import org.github.mcmetricscollector.common.config.RedisConfig;
 import org.github.mcmetricscollector.common.service.RedisService;
 import org.github.mcmetricscollector.common.service.impl.RedisServiceImpl;
 import org.github.mcmetricscollector.security.MetricsBasicAuthFilter;
+import org.github.mcmetricscollector.security.ThreadLocalRemover;
 import org.github.mcmetricscollector.service.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springdoc.core.configuration.SpringDocConfiguration;
 import org.springdoc.core.configuration.SpringDocUIConfiguration;
 import org.springdoc.core.properties.SpringDocConfigProperties;
@@ -15,6 +17,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Optional;
 
@@ -70,6 +74,16 @@ public class AppConfig {
         registrationBean.setFilter(new MetricsBasicAuthFilter(userService));
         registrationBean.addUrlPatterns("/v1/manage/*", "/v1/metrics/*");
         return registrationBean;
+    }
+
+    @Bean
+    WebMvcConfigurer webMvcConfigurer(ThreadLocalRemover threadLocalRemover) {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addInterceptors(@NotNull InterceptorRegistry registry) {
+                registry.addInterceptor(threadLocalRemover);
+            }
+        };
     }
     
 }
