@@ -16,6 +16,12 @@ public class ErrorHandler {
         return createErrorMessage(400, e.getMessage());
     }
 
+    @ExceptionHandler(SecurityException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorMessage handleSecurityException(SecurityException e) {
+        return createErrorMessage(403, e.getMessage());
+    }
+
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage handleServiceException(ServiceException e) {

@@ -37,12 +37,15 @@ public class MetricsBasicAuthFilter implements Filter {
             return;
         }
 
+
         if (!credentialsOk) {
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
+        Principal principal = userService.constructPrincipal(userAndPassword[0]);
+        PrincipalHolder.getInstance().setPrincipal(principal);
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

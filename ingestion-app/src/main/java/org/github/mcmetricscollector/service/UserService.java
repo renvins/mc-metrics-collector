@@ -1,6 +1,7 @@
 package org.github.mcmetricscollector.service;
 
 import org.github.mcmetricscollector.gen.model.RegisterUserDTO;
+import org.github.mcmetricscollector.security.Principal;
 
 public interface UserService {
 
@@ -29,4 +30,6 @@ public interface UserService {
      * @param username the username of the user to be enabled or disabled
      */
     void enableDisableUser(String username);
+
+    Principal constructPrincipal(String username);
 }

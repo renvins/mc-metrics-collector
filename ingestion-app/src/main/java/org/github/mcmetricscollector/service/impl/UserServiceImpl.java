@@ -2,23 +2,36 @@ package org.github.mcmetricscollector.service.impl;
 
 import com.google.common.hash.Hashing;
 import org.github.mcmetricscollector.database.sql.entities.UserEntity;
+import org.github.mcmetricscollector.database.sql.repository.RolePermissionRepository;
 import org.github.mcmetricscollector.database.sql.repository.UserRepository;
+import org.github.mcmetricscollector.database.sql.repository.UserRoleRepository;
 import org.github.mcmetricscollector.exceptions.ClientException;
 import org.github.mcmetricscollector.exceptions.UserAlreadyExistsException;
 import org.github.mcmetricscollector.exceptions.UserNotEnabledException;
 import org.github.mcmetricscollector.gen.model.RegisterUserDTO;
+import org.github.mcmetricscollector.security.Principal;
+import org.github.mcmetricscollector.security.objects.Role;
+import org.github.mcmetricscollector.security.objects.RoleProjection;
 import org.github.mcmetricscollector.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final RolePermissionRepository rolePermissionRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, RolePermissionRepository rolePermissionRepository) {
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.rolePermissionRepository = rolePermissionRepository;
     }
 
     public boolean login(String username, String password) {
@@ -58,5 +71,27 @@ public class UserServiceImpl implements UserService {
 
         user.setEnabled(enabled);
         userRepository.save(user);
+    }
+
+    @Override
+    public Principal constructPrincipal(String username) {
+        List<RoleProjection> rolePermissionProjection = userRoleRepository.findRolesOf(username);
+        Map<String, List<String>> rolePermissions = new HashMap<>();
+
+        for (RoleProjection roleProjection : rolePermissionProjection) {
+            rolePermissions.putIfAbsent(roleProjection.role(), new ArrayList<>());
+            rolePermissions.get(roleProjection.role()).add(roleProjection.permission());
+        }
+
+        List<Role> roles = new ArrayList<>();
+        for (Map.Entry<String, List<String>> entry : rolePermissions.entrySet()) {
+            var roleName = entry.getKey();
+            var permissions = entry.getValue();
+            var role = new Role(roleName, permissions);
+            roles.add(role);
+        }
+
+
+        return new Principal.PrincipalImpl(username, roles);
     }
 }
